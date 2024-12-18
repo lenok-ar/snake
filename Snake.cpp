@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <windows.h>
 #include <ctime>
 #include <conio.h>
@@ -8,12 +8,12 @@
 using namespace std;
 
 bool gameover;
-const int width = 20;
-const int height = 20;
+const int width = 10;
+const int height = 5;
 int tailx[100];
 int taily[100];
 int tailn = 0;
-int speed = 200;
+int speed = 100;
 int x, y, fruitx, fruity, score, i, j;
 
 enum Movement { stop = 0, left = 1, right = 2, up = 3, down = 4 };
@@ -38,9 +38,6 @@ void image() {
 
     for (i = 0; i < height; i++) {
         for (j = 0; j < width; j++) {
-            if (j == 0 || j == width - 1) {
-                cout << "+";
-            }
             if (i == y && j == x) {
                 cout << "O"; 
             }
@@ -84,10 +81,13 @@ void controls() {
             direction = down;
             break;
         case 'a':
-            direction = left;
+            direction = Movement::left;
             break;
         case 'd':
-            direction = right;
+            direction = Movement::right;
+            break;
+        case 'x':
+            gameover = true;
             break;
         }
     }
@@ -116,10 +116,10 @@ void logic() {
     case down:
         y++;
         break;
-    case left:
+    case Movement::left:
         x--;
         break;
-    case right:
+    case Movement::right:
         x++;
         break;
     default:
