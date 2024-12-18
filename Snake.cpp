@@ -16,7 +16,7 @@ int tailn = 0;
 int speed = 200;
 int x, y, fruitx, fruity, score, i, j;
 
-enum Movement { stop = 0, left, right, up, down };
+enum Movement { stop = 0, left = 1, right = 2, up = 3, down = 4 };
 Movement direction; 
 
 void setting() {
